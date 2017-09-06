@@ -1,0 +1,35 @@
+1) Transformer le projet iki-team en un module 'iki.team' et générer le jar dans un dossier 'mods' qui doit se trouver au même niveau que le dossier
+   iki-team.
+
+   -- exécuter le module et assurer vous qu'un fichier est généré avec la sérialisation des objets 'Membre'
+
+
+    Notes:
+        copier le jar jackson-databind dans le dossier 'mods' et les deux autres jar dans un dossier lib
+        compiler le module avec javac en mixant class-path et module-path puis en n'utilisant le module-path
+        construiser un jar du module dans le dossier 'mods'
+        exécuter le jar
+
+    -- décommenter le code du TODO 1 pour construire une instance de la classe TeamManager sans appeler de constructeur !
+       regarder bien le log du build, les warning
+       utiliser jdeps pour savoir si vous utilisez des éléments internes à la jdk
+
+    -- décommenter le TODO 2 et compiler le module
+
+2) De même transformer les modules iki-recruitement et iki-mission en modules et générer un jar dans le dossier 'mods'
+    Notes:
+        des ajutements sont nécessaires côté module iki-team, n'oubliez pas de le rebuilder !
+        constater ce que fait le sanity-check qu'on buiild le module iki-recruitement
+
+    -- exécuter le module recruitement et constater un souci lié à l'introspection.
+
+3) Transformer le module iki-api en module jigsaw et exécuter le.
+    Notes:
+        des ajutements sont nécessaires sur les modules iki-recruitement et iki-mission, n'oubliez pas de les rebuilder !
+
+4) Compiler le module iki-team avec maven
+    créer un pom.xml
+    utiliser la version 3.6.2 du plug-in maven-compiler-plugin
+
+
+5) construire une image de la jdk avec les modules utilisés par le projet
