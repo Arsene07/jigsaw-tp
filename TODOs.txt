@@ -1,27 +1,38 @@
-1) Transformer le projet iki-team en un module 'iki.team' et générer le jar dans un dossier 'mods' qui doit se trouver au même niveau que le dossier
+Avant de commencer:
+
+faite un git clone sur: https://github.com/Arsene07/jigsaw-tp.git
+
+
+
+
+
+1) Transformer le projet iki-team en un module 'iki.team' et générer le jar dans un dossier 'modules' qui doit se trouver au même niveau que le dossier
    iki-team.
 
    -- exécuter le module et assurer vous qu'un fichier est généré avec la sérialisation des objets 'Membre'
 
 
     Notes:
-        copier le jar jackson-databind dans le dossier 'mods' et les deux autres jar dans un dossier lib
-        compiler le module avec javac en mixant class-path et module-path puis en n'utilisant le module-path
-        construiser un jar du module dans le dossier 'mods'
+        copier le jar jackson-databind dans le dossier 'modules' et les deux autres jar dans un dossier lib
+        compiler le module avec javac en mixant class-path et module-path puis en n'utilisant que le module-path
+        construiser un jar du module dans le dossier 'modules'
+
         exécuter le jar
 
+        A ce stade vous avez pu exécuter une application java avec un classpath vide !  REVOLUTION :)
+
     -- décommenter le code du TODO 1 pour construire une instance de la classe TeamManager sans appeler de constructeur !
-       regarder bien le log du build, les warning
-       utiliser jdeps pour savoir si vous utilisez des éléments internes à la jdk
+       regarder bien le log du build, les warning ..
+       utiliser jdeps pour savoir si vous utilisez des éléments internes à la JDK
 
-    -- décommenter le TODO 2 et compiler le module
+    -- décommenter le TODO 2 et compiler le module iki-team
 
-2) De même transformer les modules iki-recruitement et iki-mission en modules et générer un jar dans le dossier 'mods'
+2) De même transformer les modules iki-recruitement et iki-mission en modules et générer un jar dans le dossier 'modules'
     Notes:
         des ajutements sont nécessaires côté module iki-team, n'oubliez pas de le rebuilder !
         constater ce que fait le sanity-check qu'on buiild le module iki-recruitement
 
-    -- exécuter le module recruitement et constater un souci lié à l'introspection.
+    -- exécuter le module recruitement et constater un souci lié à l'introspection. Corrigez le
 
 3) Transformer le module iki-api en module jigsaw et exécuter le.
     Notes:
