@@ -52,6 +52,10 @@ public class IkiAPI {
 
         teamManager.raiseIkiMembers(500.d);
         teamManager.logIkiMembers();
+
+        Mission m = new Mission(1,null, null,null,null);
+        MissionManager missionManager = new MissionManager();
+        missionManager.addMission(m);
     }
 
 }
