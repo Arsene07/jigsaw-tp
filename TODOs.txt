@@ -44,3 +44,56 @@ faite un git clone sur: https://github.com/Arsene07/jigsaw-tp.git
 
 
 5) construire une image de la jdk avec les modules utilisés par le projet
+
+    modulariser les lib jackson
+
+        clone de jackson-core (modifié): git clone https://github.com/Arsene07/jackson-core.git
+        passer sur la branche 2.9: git checkout 2.9
+
+        construction du package pour générer descripteur de module:  mvn clean package
+
+        générer le descripteur de module: jdeps --generate-module-info . target/jackson-core-2.9.3-SNAPSHOT.jar
+        copier le fichier généré dans le dossier src en modifiant le nom du module en jackson.core
+
+        compiler le nouveau jackson-core: javac -d classes  --source-path src $(find src/main/java -name '*.java')
+        et créer le jar: jar --create  --file ../modules/jackson-core.jar -C classes/ .
+
+        pareil pour jackson-annotations ..
+
+        git clone https://github.com/Arsene07/jackson-annotations.git
+        passer sur la branche 2.9: git checkout 2.9
+
+        construction du jar: mvn clean package
+        jdeps --generate-module-info . target/jackson-annotations-2.9.3-SNAPSHOT.jar
+
+        copier le fichier généré dans src en modifiant le nom du module en jackson.annotations
+        javac -d classes  --source-path src $(find src/main/java -name '*.java')
+
+        jar --create  --file ../modules/jackson-annotations.jar -C classes/ .
+
+
+        de même pour jackson-databind:
+
+        git clone https://github.com/Arsene07/jackson-databind.git
+        compiler:
+        javac -d classes --module-path ../modules/  --source-path src $(find src/main/java -name '*.java')
+
+        créer le jar:
+        jar --create  --file ../modules/jackson-databind.jar -C classes/ .
+
+
+        relance le build et l'execution du module iki-api avec les nouveau "vrais" modules, éliminer le classpath
+
+        Générer l'image (attention, correction du typo 'recuitement':
+
+        /Library/Java/JavaVirtualMachines/jdk-9.0.1.jdk/Contents/Home/bin/jlink --module-path /Library/Java/JavaVirtualMachines/jdk-9.0.1.jdk/Contents/Home/jmods/:modules/:jackson-source/modules/   --add-modules iki.team,iki.recruitement,iki.mission,iki.api --limit-modules iki.team,iki.mission,iki.api,iki.recruitement --output iki-image
+
+        Aller dans le dossier iki-image là ou l'image est créée
+
+        pour voir la liste des modules, faite un: java --list-modules
+
+        puis exécuter le module iki-api, ça devient simple:
+            aller dans le dossier bin de l'image créée et faites : ./java -m iki.api/fr.zenika.iki.api.controller.IkiAPI
+
+
+
