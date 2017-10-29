@@ -27,12 +27,15 @@ faite un git clone sur: https://github.com/Arsene07/jigsaw-tp.git
 
     -- décommenter le TODO 2 et compiler le module iki-team
 
-2) De même transformer les modules iki-recruitement et iki-mission en modules et générer un jar dans le dossier 'modules'
+2) De même transformer iki-recruitement en module et générer un jar dans le dossier 'modules'
     Notes:
         des ajutements sont nécessaires côté module iki-team, n'oubliez pas de le rebuilder !
         constater ce que fait le sanity-check qu'on build le module iki-recruitement
 
     -- exécuter le module recruitement et constater un souci lié à l'introspection et à la sanitychek
+
+3) Transformer iki-mission en module et générer un jar dans le dossier 'modules'
+
 
 3) Transformer le module iki-api en module jigsaw et exécuter le.
     Notes:
