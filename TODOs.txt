@@ -37,16 +37,16 @@ faite un git clone sur: https://github.com/Arsene07/jigsaw-tp.git
 3) Transformer iki-mission en module et générer un jar dans le dossier 'modules'
 
 
-3) Transformer le module iki-api en module jigsaw et exécuter le.
+4) Transformer le module iki-api en module jigsaw et exécuter le.
     Notes:
         des ajutements sont nécessaires sur les modules iki-recruitement et iki-mission, n'oubliez pas de les rebuilder !
 
-4) Compiler le module iki-team avec maven
+5) Compiler le module iki-team avec maven
     créer un pom.xml
     utiliser la version 3.6.2 du plug-in maven-compiler-plugin
 
 
-5) construire une image de la jdk avec les modules utilisés par le projet
+6) construire une image de la jdk avec les modules utilisés par le projet
 
     modulariser les lib jackson
 
