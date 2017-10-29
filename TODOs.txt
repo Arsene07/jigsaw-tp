@@ -48,6 +48,8 @@ faite un git clone sur: https://github.com/Arsene07/jigsaw-tp.git
 
 6) construire une image de la jdk avec les modules utilisés par le projet
 
+    jlink --module-path /Library/Java/JavaVirtualMachines/jdk-9.0.1.jdk/Contents/Home/jmods/:modules/:jackson-source/modules/   --add-modules iki.team,iki.recruitment,iki.mission,iki.api  --output iki-image
+
     modulariser les lib jackson
 
         clone de jackson-core (modifié): git clone https://github.com/Arsene07/jackson-core.git
