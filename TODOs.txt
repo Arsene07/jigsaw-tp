@@ -89,7 +89,7 @@ faite un git clone sur: https://github.com/Arsene07/jigsaw-tp.git
 
         Générer l'image (attention, correction du typo 'recuitement':
 
-        /Library/Java/JavaVirtualMachines/jdk-9.0.1.jdk/Contents/Home/bin/jlink --module-path /Library/Java/JavaVirtualMachines/jdk-9.0.1.jdk/Contents/Home/jmods/:modules/:jackson-source/modules/   --add-modules iki.team,iki.recruitement,iki.mission,iki.api --limit-modules iki.team,iki.mission,iki.api,iki.recruitement --output iki-image
+        /Library/Java/JavaVirtualMachines/jdk-9.0.1.jdk/Contents/Home/bin/jlink --module-path /Library/Java/JavaVirtualMachines/jdk-9.0.1.jdk/Contents/Home/jmods/:modules/:jackson-source/modules/   --add-modules iki.team,iki.recruitment,iki.mission,iki.api --limit-modules iki.team,iki.mission,iki.api,iki.recruitment --output iki-image
 
         Aller dans le dossier iki-image là ou l'image est créée
 
