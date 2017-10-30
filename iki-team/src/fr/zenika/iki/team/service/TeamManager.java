@@ -45,7 +45,9 @@ public class TeamManager {
        LOGGER.info("Logging iki team members in Json format.");
        File json =  new File("/applis/jigsaw-demo/iki-team/iki-team.json");
        ObjectMapper objectMapper = new ObjectMapper();
-       objectMapper.writeValue(json, members);
+       String someStr = objectMapper.writeValueAsString(members);
+       System.out.println("\n\n\n\nLogging members:\n\n\n");
+       System.out.println(someStr);
 
    }
 
