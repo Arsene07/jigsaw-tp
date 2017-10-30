@@ -48,19 +48,24 @@ faite un git clone sur: https://github.com/Arsene07/jigsaw-tp.git
 
 6) construire une image de la jdk avec les modules utilisés par le projet
 
+    jlink --module-path /Library/Java/JavaVirtualMachines/jdk-9.0.1.jdk/Contents/Home/jmods/:modules/:jackson-source/modules/   --add-modules iki.team,iki.recruitment,iki.mission,iki.api  --output iki-image
+
     modulariser les lib jackson
 
         clone de jackson-core (modifié): git clone https://github.com/Arsene07/jackson-core.git
         passer sur la branche 2.9: git checkout 2.9
 
-        construction du package pour générer descripteur de module:  mvn clean package
+        compiler  jackson-core: javac -d classes  --source-path src $(find src/main/java -name '*.java')
+        et créer le jar: jar --create  --file ../modules/jackson-core.jar -C classes/ .
 
-        générer le descripteur de module: jdeps --generate-module-info . target/jackson-core-2.9.3-SNAPSHOT.jar
+        générer le descripteur de module: jdeps --generate-module-info src target/jackson-core-2.9.3-SNAPSHOT.jar
         copier le fichier généré dans le dossier src en modifiant le nom du module en jackson.core
 
         compiler le nouveau jackson-core: javac -d classes  --source-path src $(find src/main/java -name '*.java')
         et créer le jar: jar --create  --file ../modules/jackson-core.jar -C classes/ .
-
+        
+        cette fois si on essaye de générer le module-info.java, on doit avoit une erreur car le jar est déjà modularisé !
+        
         pareil pour jackson-annotations ..
 
         git clone https://github.com/Arsene07/jackson-annotations.git
@@ -75,28 +80,34 @@ faite un git clone sur: https://github.com/Arsene07/jigsaw-tp.git
         jar --create  --file ../modules/jackson-annotations.jar -C classes/ .
 
 
-        de même pour jackson-databind:
+        pour jackson-databind:
 
         git clone https://github.com/Arsene07/jackson-databind.git
+        git checkout 2.9
+        
+        ATTENTION: lors de compilation, le --add-module est necessaire 2 fois pour lire les module core et annotations
+        
         compiler:
-        javac -d classes --module-path ../modules/  --source-path src $(find src/main/java -name '*.java')
+        javac -d classes --module-path ../modules/ --add-modules jackson.annotations --add-modules jackson.core  --source-path src $(find src/main/java -name '*.java')
 
         créer le jar:
         jar --create  --file ../modules/jackson-databind.jar -C classes/ .
-
-
+        
+        générer le module-info.java et déplacer le vers src
+        jdeps --module-path ../modules/ --add-modules jackson.core --add-modules jackson.annotations  --generate-module-info         src/ ../modules/jackson-databind.jar
+     
+         
         relance le build et l'execution du module iki-api avec les nouveau "vrais" modules, éliminer le classpath
 
-        Générer l'image (attention, correction du typo 'recuitement':
+        Générer l'image
 
-        /Library/Java/JavaVirtualMachines/jdk-9.0.1.jdk/Contents/Home/bin/jlink --module-path /Library/Java/JavaVirtualMachines/jdk-9.0.1.jdk/Contents/Home/jmods/:modules/:jackson-source/modules/   --add-modules iki.team,iki.recruitment,iki.mission,iki.api --limit-modules iki.team,iki.mission,iki.api,iki.recruitment --output iki-image
+        jlink --module-path /Library/Java/JavaVirtualMachines/jdk-9.0.1.jdk/Contents/Home/jmods/:modules/  --add-modules iki.team,iki.recruitment,iki.mission,iki.api --launcher iki=iki.api/fr.zenika.iki.api.controller.IkiAPI  --output iki-image
 
         Aller dans le dossier iki-image là ou l'image est créée
 
         pour voir la liste des modules, faite un: java --list-modules
 
-        puis exécuter le module iki-api, ça devient simple:
-            aller dans le dossier bin de l'image créée et faites : ./java -m iki.api/fr.zenika.iki.api.controller.IkiAPI
-
+        puis exécuter le module iki-api, ça devient simple: appeler le script  iki généré dans le dossier bin de l'image
+ 
 
 
