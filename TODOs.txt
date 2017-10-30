@@ -19,7 +19,7 @@ faite un git clone sur: https://github.com/Arsene07/jigsaw-tp.git
 
         exécuter le jar
 
-        A ce stade vous avez pu exécuter une application java avec un classpath vide !  REVOLUTION :)
+        A ce stade vous avez pu exécuter une application java avec un classpath vide mais .. mais avec des modules automatiques ..
 
     -- décommenter le code du TODO 1 pour construire une instance de la classe TeamManager sans appeler de constructeur !
        regarder bien le log du build, les warning ..
