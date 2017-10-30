@@ -101,14 +101,13 @@ faite un git clone sur: https://github.com/Arsene07/jigsaw-tp.git
 
         Générer l'image
 
-        jlink --module-path /Library/Java/JavaVirtualMachines/jdk-9.0.1.jdk/Contents/Home/jmods/:modules/  --add-modules       iki.team,iki.recruitment,iki.mission,iki.api  --output iki-image
+        jlink --module-path /Library/Java/JavaVirtualMachines/jdk-9.0.1.jdk/Contents/Home/jmods/:modules/  --add-modules iki.team,iki.recruitment,iki.mission,iki.api --launcher iki=iki.api/fr.zenika.iki.api.controller.IkiAPI  --output iki-image
 
         Aller dans le dossier iki-image là ou l'image est créée
 
         pour voir la liste des modules, faite un: java --list-modules
 
-        puis exécuter le module iki-api, ça devient simple:
-            aller dans le dossier bin de l'image créée et faites : ./java -m iki.api/fr.zenika.iki.api.controller.IkiAPI
-
+        puis exécuter le module iki-api, ça devient simple: appeler le script  iki généré dans le dossier bin de l'image
+ 
 
 
